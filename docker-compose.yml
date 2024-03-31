@@ -1,0 +1,29 @@
+services:
+  my-rabbit:
+    image: "rabbitmq:3-management"
+    restart: always
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    hostname: my-rabbit
+  mymariadb:
+    build: ./database
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${SQL_PASS}
+      - MYSQL_DATABASE=main
+  memmicro:
+    build: ./memcached
+    ports:
+      - "11210:11211"
+  myconsummer:
+    build: ./consummer
+    environment:
+      - USER=${USER}
+      - PASSWORD=${PASSWORD}
+    command: sh -c "sleep 10s; python3 source-code/consummer.py"
+    depends_on:
+      - mymariadb
+      - my-rabbit
