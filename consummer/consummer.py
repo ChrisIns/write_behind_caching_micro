@@ -8,7 +8,7 @@ import os
 # connect to mariadb
 
 mydb = mysql.connector.connect(
-    host = "172.17.0.4",
+    host = "mymariadb",
     username = os.environ.get('USER'),
     password = os.environ.get('PASSWORD'),
     database = "main"
@@ -18,7 +18,7 @@ cursor = mydb.cursor()
 
 # connect to rabbitmq and creating the exchange
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('172.17.0.3'))
+connection = pika.BlockingConnection(pika.ConnectionParameters('my-rabbit'))
 channel = connection.channel()
 
 channel.exchange_declare(

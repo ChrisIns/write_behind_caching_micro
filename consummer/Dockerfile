@@ -16,4 +16,4 @@ COPY consummer.py source-code
 
 RUN pip3 install -r /opt/source-code/requirements.txt
 
-CMD ["python3", "source-code/consummer.py"]
+# CMD ["python3", "source-code/consummer.py"]
