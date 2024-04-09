@@ -23,7 +23,7 @@ services:
     environment:
       - USER=${USER}
       - PASSWORD=${PASSWORD}
-    command: sh -c "sleep 10s; python3 source-code/consummer.py"
+    command: sh -c "sleep 10;python3 source-code/consummer.py"
     depends_on:
       - mymariadb
       - my-rabbit
